@@ -1,0 +1,27 @@
+#%RAML 1.0
+title: City Trivia
+
+types: 
+  City: !include /types/city.raml
+
+/trivia:
+  description: This resource accesses the trivia game.
+  /question:
+    description: This resource generates a trivia question and stores the answer as a session variable.
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              type: string
+  /answer: 
+    description: This resource receives an answer, then compares it to the session variable 'answer'.
+    post:
+      body: 
+        application/json:
+          type: string
+      responses:
+        200:
+          body:
+            application/json:
+              type: string

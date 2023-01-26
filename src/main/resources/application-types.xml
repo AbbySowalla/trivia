@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<types:mule xmlns:types="http://www.mulesoft.org/schema/mule/types">
+  <types:catalog>
+    <types:type name="city_long" format="json">
+      <types:shape format="weave" example="examples/cities-1.json"><![CDATA[%dw 2.0
+
+type city_long = {|
+  data: Array<{|    id: Number {"typeId": "int"},     wikiDataId: String,     "type": String,     city: String,     name: String,     country: String,     countryCode: String,     region: String,     regionCode: String,     latitude: Number {"typeId": "double"},     longitude: Number {"typeId": "double"},     population: Number {"typeId": "int"}  |}>, 
+  links: Array<{|    rel: String,     href: String  |}>, 
+  metadata: {|
+    currentOffset: Number {"typeId": "int"}, 
+    totalCount: Number {"typeId": "int"}
+  |}
+|} {"example": "{\\\"data\\\":[{\\\"id\\\":3350606,\\\"wikiDataId\\\":\\\"Q24668\\\",\\\"type\\\":\\\"CITY\\\",\\\"city\\\":\\\"Aixirivall\\\",\\\"name\\\":\\\"Aixirivall\\\",\\\"country\\\":\\\"Andorra\\\",\\\"countryCode\\\":\\\"AD\\\",\\\"region\\\":\\\"Sant Juli\u00E0 de L\u00F2ria\\\",\\\"regionCode\\\":\\\"06\\\",\\\"latitude\\\":42.46245,\\\"longitude\\\":1.50209,\\\"population\\\":0},{\\\"id\\\":3216144,\\\"wikiDataId\\\":\\\"Q24656\\\",\\\"type\\\":\\\"CITY\\\",\\\"city\\\":\\\"Aixovall\\\",\\\"name\\\":\\\"Aixovall\\\",\\\"country\\\":\\\"Andorra\\\",\\\"countryCode\\\":\\\"AD\\\",\\\"region\\\":\\\"Sant Juli\u00E0 de L\u00F2ria\\\",\\\"regionCode\\\":\\\"06\\\",\\\"latitude\\\":42.47635833,\\\"longitude\\\":1.48949167,\\\"population\\\":0},{\\\"id\\\":3406038,\\\"wikiDataId\\\":\\\"Q4699394\\\",\\\"type\\\":\\\"CITY\\\",\\\"city\\\":\\\"Aix\u00E0s\\\",\\\"name\\\":\\\"Aix\u00E0s\\\",\\\"country\\\":\\\"Andorra\\\",\\\"countryCode\\\":\\\"AD\\\",\\\"region\\\":\\\"Sant Juli\u00E0 de L\u00F2ria\\\",\\\"regionCode\\\":\\\"06\\\",\\\"latitude\\\":42.48638889,\\\"longitude\\\":1.46722222,\\\"population\\\":0},{\\\"id\\\":397,\\\"wikiDataId\\\":\\\"Q1863\\\",\\\"type\\\":\\\"CITY\\\",\\\"city\\\":\\\"Andorra la Vella\\\",\\\"name\\\":\\\"Andorra la Vella\\\",\\\"country\\\":\\\"Andorra\\\",\\\"countryCode\\\":\\\"AD\\\",\\\"region\\\":\\\"Andorra la Vella\\\",\\\"regionCode\\\":\\\"07\\\",\\\"latitude\\\":42.5,\\\"longitude\\\":1.5,\\\"population\\\":22151},{\\\"id\\\":3360277,\\\"wikiDataId\\\":\\\"Q24475\\\",\\\"type\\\":\\\"CITY\\\",\\\"city\\\":\\\"Ansalonga\\\",\\\"name\\\":\\\"Ansalonga\\\",\\\"country\\\":\\\"Andorra\\\",\\\"countryCode\\\":\\\"AD\\\",\\\"region\\\":\\\"Ordino\\\",\\\"regionCode\\\":\\\"05\\\",\\\"latitude\\\":42.568443,\\\"longitude\\\":1.521571,\\\"population\\\":0}],\\\"links\\\":[{\\\"rel\\\":\\\"first\\\",\\\"href\\\":\\\"\\/v1\\/geo\\/cities?offset=0&limit=5\\\"},{\\\"rel\\\":\\\"next\\\",\\\"href\\\":\\\"\\/v1\\/geo\\/cities?offset=5&limit=5\\\"},{\\\"rel\\\":\\\"last\\\",\\\"href\\\":\\\"\\/v1\\/geo\\/cities?offset=507590&limit=5\\\"}],\\\"metadata\\\":{\\\"currentOffset\\\":0,\\\"totalCount\\\":507595}}"}
+
+]]></types:shape>
+    </types:type>
+    <types:type name="question" format="java">
+      <types:shape format="raml"><![CDATA[#%RAML 1.0 DataType
+type: string]]></types:shape>
+    </types:type>
+  </types:catalog>
+  <types:enrichment select="#7e21a93f-8cb1-4e7e-bb5b-b7391dbaea34">
+    <types:processor-declaration>
+      <types:input-event>
+        <types:message>
+          <types:payload type="city_long"/>
+        </types:message>
+      </types:input-event>
+    </types:processor-declaration>
+  </types:enrichment>
+</types:mule>
